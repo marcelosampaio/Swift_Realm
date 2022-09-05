@@ -15,18 +15,21 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        print("📍 Realm path: \(path())")
 //        add()
         
         readAll()
         
     }
+    
+    func path() -> String {
+        let realmPath: String = realm.configuration.fileURL?.absoluteString ?? ""
+        return realmPath
+    }
 
     
     func add() {
-        
-        let realmPath: String = realm.configuration.fileURL?.absoluteString ?? ""
-        
-        print("📍 Realm path: \(realmPath)")
         
         let cat = Cat()
         cat.name = "Martina"
@@ -42,7 +45,7 @@ class ViewController: UIViewController {
         let cats = realm.objects(Cat.self)
         
         for cat in cats {
-            print("This is cat \(cat.name ?? "***")")
+            print("👉 This is cat \(cat.name ?? "***")")
         }
         
     }
